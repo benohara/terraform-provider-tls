@@ -124,7 +124,7 @@ func dataSourceTlsCertificateRead(d *schema.ResourceData, _ interface{}) error {
 	return nil
 }
 
-func fingerprintTothumbprint(fingerprint []string, _ interface{}) {
+func convertFingerprint(fingerprint []string, _ interface{}) {
 	var buf bytes.Buffer
 	for i, f := range fingerprint {
 		if i > 0 {
@@ -146,9 +146,9 @@ func parsePeerCertificate(cert *x509.Certificate) map[string]interface{} {
 		"not_before":           cert.NotBefore.Format(time.RFC3339),
 		"not_after":            cert.NotAfter.Format(time.RFC3339),
 		"sha1_fingerprint":     fmt.Sprintf("%x", sha1.Sum(cert.Raw)),
-		"sha1_thumbprint":      fingerprintToThumbprint(fmt.Sprintf("%x", sha1.Sum(cert.Raw))),
+		"sha1_thumbprint":      convertFingerprint(fmt.Sprintf("%x", sha1.Sum(cert.Raw))),
 		"sha256_fingerprint":   fmt.Sprintf("%x", sha256.Sum256(cert.Raw)),
-		"sha256_thumbprint":    fingerprintToThumbprint(fmt.Sprintf("%x", sha256.Sum256(cert.Raw))),
+		"sha256_thumbprint":    ConvertFingerprint(fmt.Sprintf("%x", sha256.Sum256(cert.Raw))),
 
 	}
 
