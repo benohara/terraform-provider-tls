@@ -53,6 +53,7 @@ The following attributes are exported:
     * `certificates.#.serial_number` - Number that uniquely identifies the certificate with the CA's system. The `format`
     function can be used to convert this base 10 number into other bases, such as hex.
     * `certificates.#.sha1_fingerprint` - The SHA1 fingerprint of the public key of the certificate.
+    * `certificates.#.sha256_fingerprint` - The SHA256 fingerprint of the public key of the certificate.
     * `certificates.#.signature_algorithm` - The algorithm used to sign the certificate.
     * `certificates.#.subject` - The entity the certificate belongs to, roughly following
     [RFC2253](https://tools.ietf.org/html/rfc2253).

@@ -53,6 +53,7 @@ data "tls_certificate" "test" {
 					resource.TestCheckResourceAttr("data.tls_certificate.test", "certificates.1.not_before", "2019-11-08T09:01:36Z"),
 					resource.TestCheckResourceAttr("data.tls_certificate.test", "certificates.1.not_after", "2019-11-08T19:01:36Z"),
 					resource.TestCheckResourceAttr("data.tls_certificate.test", "certificates.1.sha1_fingerprint", "61b65624427d75b61169100836904e44364df817"),
+					resource.TestCheckResourceAttr("data.tls_certificate.test", "certificates.1.sha256_fingerprint", "66D69BB2324B5FDEF01EE5C59D6BDC1FCE1A0DB62EE6BA897A4BC1FDACE20520"),
 				),
 			},
 		},
