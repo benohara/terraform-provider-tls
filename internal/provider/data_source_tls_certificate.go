@@ -124,7 +124,8 @@ func dataSourceTlsCertificateRead(d *schema.ResourceData, _ interface{}) error {
 	return nil
 }
 
-func convertFingerprint(fingerprint []string, _ interface{}) {
+func convertFingerprint(fingerprint []string) {
+	var _ interface{}
 	var buf bytes.Buffer
 	for i, f := range fingerprint {
 		if i > 0 {
