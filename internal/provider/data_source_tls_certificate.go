@@ -2,6 +2,7 @@ package provider
 
 import (
 	"crypto/sha1"
+	"crypto/sha256"
 	"crypto/tls"
 	"crypto/x509"
 	"fmt"
@@ -127,7 +128,7 @@ func parsePeerCertificate(cert *x509.Certificate) map[string]interface{} {
 		"not_before":           cert.NotBefore.Format(time.RFC3339),
 		"not_after":            cert.NotAfter.Format(time.RFC3339),
 		"sha1_fingerprint":     fmt.Sprintf("%x", sha1.Sum(cert.Raw)),
-		"sha256_fingerprint":     fmt.Sprintf("%x", sha256.Sum256(cert.Raw)),
+		"sha256_fingerprint":   fmt.Sprintf("%x", sha256.Sum256(cert.Raw)),
 	}
 
 	return ret
