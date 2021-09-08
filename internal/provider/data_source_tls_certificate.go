@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"net/url"
 	"time"
+	"bytes"
 )
 
 func dataSourceTlsCertificate() *schema.Resource {
