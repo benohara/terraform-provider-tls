@@ -54,8 +54,8 @@ The following attributes are exported:
     function can be used to convert this base 10 number into other bases, such as hex.
     * `certificates.#.sha1_fingerprint` - The SHA1 fingerprint of the public key of the certificate.
     * `certificates.#.sha256_fingerprint` - The SHA256 fingerprint of the public key of the certificate.
-    * `certificates.#.sha1_thumbprint` - The SHA1 thumbprint of the public key of the certificate. XX:YY:ZZ
-    * `certificates.#.sha256_thumbprint` - The SHA256 thumbprint of the public key of the certificate. XX:YY:ZZ
+    * `certificates.#.sha1_fingerprint_rfc4716` - The SHA1 thumbprint of the public key of the certificate in RFC4716 format.
+    * `certificates.#.sha256_fingerprint_rfc4716` - The SHA256 thumbprint of the public key of the certificate in RFC4716 format.
     * `certificates.#.signature_algorithm` - The algorithm used to sign the certificate.
     * `certificates.#.subject` - The entity the certificate belongs to, roughly following
     [RFC2253](https://tools.ietf.org/html/rfc2253).
