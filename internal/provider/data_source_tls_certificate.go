@@ -9,7 +9,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"net/url"
 	"time"
-	"bytes"
 )
 
 func dataSourceTlsCertificate() *schema.Resource {
@@ -147,9 +146,9 @@ func parsePeerCertificate(cert *x509.Certificate) map[string]interface{} {
 		"not_before":           cert.NotBefore.Format(time.RFC3339),
 		"not_after":            cert.NotAfter.Format(time.RFC3339),
 		"sha1_fingerprint":     fmt.Sprintf("%x", sha1.Sum(cert.Raw)),
-		"sha1_thumbprint":      rfc4716hex(sha1.Sum(cert.Raw)[:]),
+		"sha1_thumbprint":      rfc4716hex(sha1.Sum(cert.Raw)),
 		"sha256_fingerprint":   fmt.Sprintf("%x", sha256.Sum256(cert.Raw)),
-		"sha256_thumbprint":    rfc4716hex(sha256.Sum256(cert.Raw)[:]),
+		"sha256_thumbprint":    rfc4716hex(sha256.Sum256(cert.Raw)),
 	}
 
 	return ret
