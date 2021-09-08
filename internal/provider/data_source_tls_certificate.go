@@ -148,7 +148,7 @@ func parsePeerCertificate(cert *x509.Certificate) map[string]interface{} {
 		"sha1_fingerprint":     fmt.Sprintf("%x", sha1.Sum(cert.Raw)),
 		"sha1_thumbprint":      convertFingerprint(fmt.Sprintf("%x", sha1.Sum(cert.Raw))),
 		"sha256_fingerprint":   fmt.Sprintf("%x", sha256.Sum256(cert.Raw)),
-		"sha256_thumbprint":    ConvertFingerprint(fmt.Sprintf("%x", sha256.Sum256(cert.Raw))),
+		"sha256_thumbprint":    convertFingerprint(fmt.Sprintf("%x", sha256.Sum256(cert.Raw))),
 
 	}
 
