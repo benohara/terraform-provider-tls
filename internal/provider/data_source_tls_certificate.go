@@ -125,16 +125,15 @@ func dataSourceTlsCertificateRead(d *schema.ResourceData, _ interface{}) error {
 	return nil
 }
 
-func convertFingerprint(fingerprint string) string {
-	var _ interface{}
-	var buf bytes.Buffer
-	for i, f := range fingerprint {
-		if i > 0 {
-			_, _ = fmt.Fprintf(&buf, ":")
+func rfc4716hex(data []byte) string {
+	var fingerprint string
+	for i := 0; i < len(data); i++ {
+		fingerprint = fmt.Sprintf("%s%0.2x", fingerprint, data[i])
+		if i != len(data)-1 {
+			fingerprint = fingerprint + ":"
 		}
-		_, _ = fmt.Fprintf(&buf, "%02X", f)
 	}
-	return buf.String()
+	return fingerprint
 }
 func parsePeerCertificate(cert *x509.Certificate) map[string]interface{} {
 	ret := map[string]interface{}{
@@ -148,10 +147,9 @@ func parsePeerCertificate(cert *x509.Certificate) map[string]interface{} {
 		"not_before":           cert.NotBefore.Format(time.RFC3339),
 		"not_after":            cert.NotAfter.Format(time.RFC3339),
 		"sha1_fingerprint":     fmt.Sprintf("%x", sha1.Sum(cert.Raw)),
-		"sha1_thumbprint":      convertFingerprint(fmt.Sprintf("%x", sha1.Sum(cert.Raw))),
+		"sha1_thumbprint":      rfc4716hex(sha1.Sum(cert.Raw)[:]),
 		"sha256_fingerprint":   fmt.Sprintf("%x", sha256.Sum256(cert.Raw)),
-		"sha256_thumbprint":    convertFingerprint(fmt.Sprintf("%x", sha256.Sum256(cert.Raw))),
-
+		"sha256_thumbprint":    rfc4716hex(sha256.Sum256(cert.Raw)[:]),
 	}
 
 	return ret
